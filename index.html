@@ -2,24 +2,24 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Employee Tracker</title>
+    <title>Train Tracker</title>
+    <!-- Like train tracks...lolol -->
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> 
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" /> 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
     <!-- Moment.js Reference -->
-    <!-- <script src="http://momentjs.com/downloads/moment.js"></script>   -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   </head>
   
   <body>
 
-  <div class ="container">
+  <div class="container">
     
     <div class="jumbotron">
       <h1>Time for Trains!</h1>
@@ -36,7 +36,7 @@
         </div>
         
         <div class="panel-body">
-          <table class="table table-hover" id='employee-table'>
+          <table class="table table-hover" id='train-table'>
                 <thead>
                   <tr>
                     <th>Train</th>
@@ -73,8 +73,8 @@
           </div>
 
           <div class="form-group">
-            <label for="platform-input">Platform</label>
-            <input class="form-control" id="platform-input" type="text">
+            <label for="first-train-input">First Train Time</label>
+            <input class="form-control" id="first-train-input" type="text">
           </div>
 
           <div class="form-group">
@@ -95,7 +95,7 @@
   <!-- Loading in the jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Link to my js file -->
-    <script type="text/javascript" src="assets/js/script.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
   
   </div>
   </body>
