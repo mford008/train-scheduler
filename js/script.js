@@ -16,13 +16,15 @@
     event.preventDefault();
 
     var trainName = $("#train-input").val().trim();
-    var trainDestination= $("#destination-input").val().trim();
+    var trainDestination = $("#destination-input").val().trim();
+    var trainPlatform = $("#platform-input").val().trim();
     var trainFirst= $("#first-train-input").val().trim();
     var trainFrequency= $("#frequency-input").val().trim();
   // Storing new trains
     var newTrain = {
       train: trainName,
       destination: trainDestination,
+      platform: trainPlatform,
       firstTrain: trainFirst,
       frequency: trainFrequency
     };
@@ -35,6 +37,7 @@
   
   $("#train-input").val("")
   $("#destination-input").val("")
+  $("#platform-input").val("")
   $("#first-train-input").val("")
   $("#frequency-input").val("")
 
@@ -61,18 +64,18 @@ function getTrainTime(t, f) {
 };
 
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
-  // database.ref().orderByChild("dateAdded").on("child_added",function(snapshot, prevChildKey) {
 
   getTrainTime();
 
   var trainName = childSnapshot.val().train;
   var trainDestination = childSnapshot.val().destination;
+  var trainPlatform = childSnapshot.val().platform;
   var trainFirst = childSnapshot.val().firstTrain;
   var trainFrequency = childSnapshot.val().frequency;
 
 
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
-  trainFirst + "</td><td>" + trainFrequency + "</td></tr>");
+  trainPlatform + "</td><td>" + trainFirst + "</td></tr>");
 
   // <td>" + trainArrival + "</td><td>" + trainMinutesAway + "</td>
   
