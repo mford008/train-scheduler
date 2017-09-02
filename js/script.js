@@ -74,9 +74,9 @@ function getTrainTime(t, f) {
   var trainFrequency = childSnapshot.val().frequency;
 
   var trainArrival = getTrainTime(trainFirst, trainFrequency)[0];
-  var trainMinutesAway = getTrainTime(moment(), moment().subtract(trainArrival, "minutes"))[1];
+  var trainMinutesAway = getTrainTime(moment(), moment().subtract(trainArrival))[1];
 
-  getTrainTime();
+  
 
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
   trainPlatform + "</td><td>" + trainFirst + "</td><td>" + trainFrequency + "</td><td>" + trainArrival + "</td><td>" + trainMinutesAway + "</td></tr>");
