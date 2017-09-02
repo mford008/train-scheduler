@@ -20,6 +20,7 @@
     var trainPlatform = $("#platform-input").val().trim();
     var trainFirst= $("#first-train-input").val().trim();
     var trainFrequency= $("#frequency-input").val().trim();
+
   // Storing new trains
     var newTrain = {
       train: trainName,
@@ -60,7 +61,7 @@ function getTrainTime(t, f) {
     first.add(f, 'm');
   } 
 
-  return first.format("HH:mm");
+  return [first.format("HH:mm"), (first.diff(now, 'minutes'))]
 };
 
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
@@ -73,12 +74,12 @@ function getTrainTime(t, f) {
   var trainFirst = childSnapshot.val().firstTrain;
   var trainFrequency = childSnapshot.val().frequency;
 
+  var trainArrival = getTrainTime()[0];
+  var trainMinutesAway = getTrainTime()[1];
 
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
-  trainPlatform + "</td><td>" + trainFirst + "</td></tr>");
+  trainPlatform + "</td><td>" + trainFirst + "</td><td>" + trainFrequency + "</td><td>" + trainArrival + "</td><td>" + trainMinutesAway + "</td></tr>");
 
   // <td>" + trainArrival + "</td><td>" + trainMinutesAway + "</td>
   
   });
-
-
