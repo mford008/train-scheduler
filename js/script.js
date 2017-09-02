@@ -40,29 +40,39 @@
 
   });
 
+  // Calculate next train time
+function getTrainTime(t, f) {
+
+  var now = moment();
+  console.log(now);
+  
+  var first = moment(t, "HH:mm");
+  console.log(first);
+
+  if (moment(now).isBefore(first)) {
+    return first.format("HH:mm");
+  }
+
+  while (moment(now).isAfter(first)) {
+    first.add(f, 'm');
+  } 
+
+  return first.format("HH:mm");
+};
+
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   // database.ref().orderByChild("dateAdded").on("child_added",function(snapshot, prevChildKey) {
 
+  getTrainTime();
 
   var trainName = childSnapshot.val().train;
   var trainDestination = childSnapshot.val().destination;
   var trainFirst = childSnapshot.val().firstTrain;
   var trainFrequency = childSnapshot.val().frequency;
 
-  // Calculate next arrival, minutes away
-  
-
-  var now = moment();
-  console.log(now);
-  
-  var first = moment(trainFirst, "HH:mm");
-  console.log(first);
-
-  var trainArrival = moment().add(trainFrequency);
-  // var trainMinutesAway = ??
 
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
-  trainFirst + "</td><td>" + trainFrequency + "</td><td>" + trainArrival + "</td></tr>");
+  trainFirst + "</td><td>" + trainFrequency + "</td></tr>");
 
   // <td>" + trainArrival + "</td><td>" + trainMinutesAway + "</td>
   
