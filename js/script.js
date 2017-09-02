@@ -34,7 +34,7 @@
   console.log(newTrain);
   alert("Train added!");
 
-  // Clear fields so new train can be added... ADD ALL THE TRAINS!!!  
+  // Clear fields so new train can be added  
   
   $("#train-input").val("")
   $("#destination-input").val("")
@@ -54,14 +54,14 @@ function getTrainTime(t, f) {
   console.log(first);
 
   if (moment(now).isBefore(first)) {
-    return first.format("HH:mm");
+    return [first.format("HH:mm"), (first.diff(now, 'minutes'))];
   }
 
   while (moment(now).isAfter(first)) {
     first.add(f, 'm');
   } 
 
-  return [first.format("HH:mm"), (first.diff(now, 'minutes'))]
+  return [first.format("HH:mm"), (first.diff(now, 'minutes'))];
 };
 
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
@@ -74,13 +74,11 @@ function getTrainTime(t, f) {
   var trainFrequency = childSnapshot.val().frequency;
 
   var trainArrival = getTrainTime(trainFirst, trainFrequency)[0];
-  var trainMinutesAway = getTrainTime(moment(), moment().subtract(trainArrival))[1];
+  var trainMinutesAway = getTrainTime(trainFirst, trainFrequency)[1];
 
-  
 
   $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDestination + "</td><td>" +
   trainPlatform + "</td><td>" + trainFirst + "</td><td>" + trainFrequency + "</td><td>" + trainArrival + "</td><td>" + trainMinutesAway + "</td></tr>");
 
-  // <td>" + trainArrival + "</td><td>" + trainMinutesAway + "</td>
   
   });
